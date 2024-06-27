@@ -3,7 +3,7 @@ public class Main {
     public static boolean isFound;
     public static boolean isFemale, isMale;
     public static boolean cough, vomiting, fatigue, headache, fever, chill, discomfort, nausea, pain, drowsiness;
-    public static boolean dehydration, catarrh;
+    public static boolean dehydration, catarrh, joint_pain, highBP;
     public static boolean lost_appetite;
     public static void main(String[] args) {
         System.out.println("-------------------Health Checker-------------------");
@@ -80,12 +80,20 @@ public class Main {
             if (symptoms.equals("vomit")) {
                 vomiting = true;
             }
+            if (symptoms.equals("joint pain")) {
+                joint_pain = true;
+            }
+            if (symptoms.equals("high blood pressure") || symptoms.equals("high bp")) {
+                highBP = true;
+            }
         }
 
         //Calling all methods
         while (!isFound) {
             malariaTest();
             pregnancyTest();
+            obesity();
+            notFound();
         }
 
     }
@@ -140,8 +148,27 @@ public class Main {
         isFound = true;
     }
 
+    public static void obesity() {
+        int obesityScore = 0;
+        if (fatigue) {
+            obesityScore++;
+        }
+        if (joint_pain) {
+            obesityScore++;
+        }
+        if (highBP) {
+            obesityScore++;
+        }
+        if (obesityScore == 3) {
+            System.out.println("You have obesity.");
+        }
+        isFound = true;
+    }
+
     public static void notFound() {
-        System.out.println("Oops! We can't find out what's wrong!");
-        System.out.println("We advise that you seek a medical professional advice as soon as possible.");
+        if (isFound) {
+            System.out.println("Oops! We can't find out what's wrong!");
+            System.out.println("We advise that you seek a medical professional advice as soon as possible.");
+        }
     }
 }
