@@ -3,7 +3,7 @@ public class Main {
     public static boolean isFound;
     public static boolean isFemale, isMale;
     public static boolean cough, vomiting, fatigue, headache, fever, chill, discomfort, nausea, pain, drowsiness;
-    public static boolean dehydration;
+    public static boolean dehydration, catarrh;
     public static boolean lost_appetite;
     public static void main(String[] args) {
         System.out.println("-------------------Health Checker-------------------");
@@ -49,8 +49,9 @@ public class Main {
             if (symptoms.equals("headache")) {
                 headache = true;
             }
-            if (symptoms.equals("vomiting")) {
+            if (symptoms.equals("vomiting") || symptoms.equals("vomit") || symptoms.equals("nausea")) {
                 vomiting = true;
+                nausea = true;
             }
             if (symptoms.equals("fatigue")) {
                 fatigue = true;
@@ -60,9 +61,6 @@ public class Main {
             }
             if (symptoms.equals("discomfort")) {
                 discomfort = true;
-            }
-            if (symptoms.equals("nausea")) {
-                nausea = true;
             }
             if (symptoms.equals("pain")) {
                 pain = true;
@@ -76,6 +74,12 @@ public class Main {
             if (symptoms.equals("dehydration")) {
                 dehydration = true;
             }
+            if (symptoms.equals("catarrh")) {
+                catarrh = true;
+            }
+            if (symptoms.equals("vomit")) {
+                vomiting = true;
+            }
         }
 
         //Calling all methods
@@ -87,14 +91,50 @@ public class Main {
     }
 
     public static void pregnancyTest() {
-        if (vomiting && fatigue && isFemale) {
+        int pregScore = 0;
+        if (vomiting) {
+            pregScore++;
+        }
+        if (fatigue) {
+            pregScore++;
+        }
+
+        if (pregScore >= 1.4) {
             System.out.println("You are pregnant!");
         }
         isFound = true;
     }
 
     public static void malariaTest() {
-        if (headache & fever) {
+        int malariaScore = 0;
+        if (headache) {
+            malariaScore++;
+        }
+        if (fever) {
+            malariaScore++;
+        }
+        if (catarrh) {
+            malariaScore++;
+        }
+        if (chill) {
+            malariaScore++;
+        }
+        if (discomfort) {
+            malariaScore++;
+        }
+        if (headache) {
+            malariaScore++;
+        }
+        if (nausea) {
+            malariaScore++;
+        }
+        if (vomiting) {
+            malariaScore++;
+        }
+        if (drowsiness) {
+            malariaScore++;
+        }
+        if (malariaScore >= 5) {
             System.out.println("You are having malaria");
         }
         isFound = true;
