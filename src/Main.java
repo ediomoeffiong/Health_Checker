@@ -99,7 +99,7 @@ public class Main {
             pregScore++;
         }
 
-        if (pregScore >= 1.4) {
+        if ((pregScore >= 1.4) && isFemale) {
             System.out.println("You are pregnant!");
         }
         isFound = true;
