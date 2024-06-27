@@ -107,10 +107,11 @@ public class Main {
         }
 
         //Calling all methods
-        while (!isFound) {
-            malariaTest();
-            pregnancyTest();
-            obesityTest();
+        malariaTest();
+        pregnancyTest();
+        obesityTest();
+        cancerTest();
+        if (!isFound) {
             notFound();
         }
 
@@ -127,8 +128,8 @@ public class Main {
 
         if ((pregScore >= 1.4) && isFemale) {
             System.out.println("You are pregnant!");
+            isFound = true;
         }
-        isFound = true;
     }
 
     public static void malariaTest() {
@@ -162,8 +163,8 @@ public class Main {
         }
         if (malariaScore >= 5) {
             System.out.println("You are having malaria");
+            isFound = true;
         }
-        isFound = true;
     }
 
     public static void obesityTest() {
@@ -179,8 +180,8 @@ public class Main {
         }
         if (obesityScore == 3) {
             System.out.println("You have obesity.");
+            isFound = true;
         }
-        isFound = true;
     }
     public static void cancerTest() {
         int cancerScore = 0;
@@ -211,12 +212,14 @@ public class Main {
         if (weightLoss) {
             cancerScore++;
         }
+        if (cancerScore >= 7) {
+            System.out.println("You have cancer!");
+            isFound = true;
+        }
     }
 
     public static void notFound() {
-        if (isFound) {
-            System.out.println("Oops! We can't find out what's wrong!");
-            System.out.println("We advise that you seek a medical professional advice as soon as possible.");
-        }
+        System.out.println("Oops! We can't find out what's wrong!");
+        System.out.println("We advise that you seek a medical professional advice as soon as possible.");
     }
 }
