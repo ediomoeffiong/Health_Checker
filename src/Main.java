@@ -3,8 +3,8 @@ public class Main {
     public static boolean isFound;
     public static boolean isFemale, isMale;
     public static boolean cough, vomiting, fatigue, headache, fever, chill, discomfort, nausea, pain, drowsiness;
-    public static boolean dehydration, catarrh, joint_pain, highBP;
-    public static boolean lost_appetite;
+    public static boolean dehydration, catarrh, jointPain, highBP, skinChanges, difficultySwallowing, bloating;
+    public static boolean lostAppetite, bleeding, sweating, weightLoss;
     public static void main(String[] args) {
         System.out.println("-------------------Health Checker-------------------");
         System.out.print("Enter your name: ");
@@ -40,7 +40,7 @@ public class Main {
 
     public static void symptoms(String[] symptom) {
         for (String symptoms : symptom) {
-            if (symptoms.equals("cough")) {
+            if (symptoms.equals("cough") || symptoms.equals("coughing")) {
                 cough = true;
             }
             if (symptoms.equals("fever")) {
@@ -69,7 +69,7 @@ public class Main {
                 drowsiness = true;
             }
             if (symptoms.equals("lost appetite") || symptoms.equals("loss of appetite")) {
-                lost_appetite = true;
+                lostAppetite = true;
             }
             if (symptoms.equals("dehydration")) {
                 dehydration = true;
@@ -81,10 +81,28 @@ public class Main {
                 vomiting = true;
             }
             if (symptoms.equals("joint pain")) {
-                joint_pain = true;
+                jointPain = true;
             }
             if (symptoms.equals("high blood pressure") || symptoms.equals("high bp")) {
                 highBP = true;
+            }
+            if (symptoms.equals("skin changes")) {
+                skinChanges = true;
+            }
+            if (symptoms.equals("difficulty swallowing") || symptoms.equals("swallowing difficulty")) {
+                difficultySwallowing = true;
+            }
+            if (symptoms.equals("bloating")) {
+                bloating = true;
+            }
+            if (symptoms.equals("bleeding")) {
+                bleeding = true;
+            }
+            if (symptoms.equals("sweating") || symptoms.equals("sweat")) {
+                sweating = true;
+            }
+            if (symptoms.equals("weight loss") || symptoms.equals("loss in weight")) {
+                weightLoss = true;
             }
         }
 
@@ -92,7 +110,7 @@ public class Main {
         while (!isFound) {
             malariaTest();
             pregnancyTest();
-            obesity();
+            obesityTest();
             notFound();
         }
 
@@ -148,12 +166,12 @@ public class Main {
         isFound = true;
     }
 
-    public static void obesity() {
+    public static void obesityTest() {
         int obesityScore = 0;
         if (fatigue) {
             obesityScore++;
         }
-        if (joint_pain) {
+        if (jointPain) {
             obesityScore++;
         }
         if (highBP) {
@@ -163,6 +181,36 @@ public class Main {
             System.out.println("You have obesity.");
         }
         isFound = true;
+    }
+    public static void cancerTest() {
+        int cancerScore = 0;
+        if (fatigue) {
+            cancerScore++;
+        }
+        if (fever) {
+            cancerScore++;
+        }
+        if (pain) {
+            cancerScore++;
+        }
+        if (difficultySwallowing) {
+            cancerScore++;
+        }
+        if (jointPain) {
+            cancerScore++;
+        }
+        if (bloating) {
+            cancerScore++;
+        }
+        if (cough) {
+            cancerScore++;
+        }
+        if (sweating) {
+            cancerScore++;
+        }
+        if (weightLoss) {
+            cancerScore++;
+        }
     }
 
     public static void notFound() {
