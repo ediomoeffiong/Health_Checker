@@ -5,11 +5,13 @@ public class Main {
     public static boolean cough, vomiting, fatigue, headache, fever, chill, discomfort, nausea, pain, drowsiness;
     public static boolean dehydration, catarrh, jointPain, highBP, skinChanges, difficultySwallowing, bloating;
     public static boolean lostAppetite, bleeding, sweating, weightLoss;
+    public static String userName, answer;
+    public static int malariaScore, pregScore, cancerScore, obesityScore;
     public static void main(String[] args) {
         System.out.println("-------------------Health Checker-------------------");
         System.out.print("Enter your name: ");
         Scanner scanName = new Scanner(System.in);
-        String userName = scanName.nextLine();
+        userName = scanName.nextLine();
         System.out.println("\n");
         System.out.println("Hii, " + userName + " I hope you're doing good today.");
         System.out.println("\nWarning: Enter the correct details throughout this prompt!");
@@ -22,6 +24,8 @@ public class Main {
             isFemale = true;
         }
 
+        System.out.println("\n" + userName + ", it is important to note that this health checker");
+        System.out.println("is not a substitute for professional medical advice.");
         System.out.println("\nType in the symptoms you're are having separated by a comma and followed by a space.");
         System.out.println("\nHit enter when you're done");
         System.out.print("\nInput symptoms: ");
@@ -118,7 +122,7 @@ public class Main {
     }
 
     public static void pregnancyTest() {
-        int pregScore = 0;
+        pregScore = 0;
         if (vomiting) {
             pregScore++;
         }
@@ -133,7 +137,7 @@ public class Main {
     }
 
     public static void malariaTest() {
-        int malariaScore = 0;
+        malariaScore = 0;
         if (headache) {
             malariaScore++;
         }
@@ -149,9 +153,6 @@ public class Main {
         if (discomfort) {
             malariaScore++;
         }
-        if (headache) {
-            malariaScore++;
-        }
         if (nausea) {
             malariaScore++;
         }
@@ -162,13 +163,89 @@ public class Main {
             malariaScore++;
         }
         if (malariaScore >= 5) {
-            System.out.println("You are having malaria");
+            System.out.println("You are may be having malaria.");
+            System.out.println("Please answer the following questions to confirm: \n\n");
+            malariaConfirm();
             isFound = true;
         }
     }
 
+    public static void malariaConfirm () {
+        if (!headache) {
+            System.out.print("Are you having headache (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                headache = true;
+                malariaScore++;
+            }
+        }
+        if (!fever) {
+            System.out.print("Are you having fever (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                fever = true;
+                malariaScore++;
+            }
+        }
+        if (!catarrh) {
+            System.out.print("Are you having catarrh (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                catarrh = true;
+                malariaScore++;
+            }
+        }
+        if (!chill) {
+            System.out.print("Are you having chill (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                chill = true;
+                malariaScore++;
+            }
+        }
+        if (!discomfort) {
+            System.out.print("Are you having discomfort (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                discomfort = true;
+                malariaScore++;
+            }
+        }
+        if (!nausea) {
+            System.out.print("Are you having nausea (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                nausea = true;
+                malariaScore++;
+            }
+        }
+        if (!vomiting) {
+            System.out.print("Are you vomiting (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                vomiting = true;
+                malariaScore++;
+            }
+        }
+        if (!drowsiness) {
+            System.out.print("Are you having drowsy (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                drowsiness = true;
+                malariaScore++;
+            }
+        }
+
+        if (malariaScore > 6) {
+            System.out.println("\n\nOops! " + userName + " you are having malaria.");
+            System.out.println("I understand this must be concerning news.\nMalaria can be serious, but it's also treatable");
+            System.out.println("We recommend you seek immediate medical attention.");
+            System.out.println("A doctor can confirm the diagnosis and prescribe the right medication.");
+        }
+    }
+
     public static void obesityTest() {
-        int obesityScore = 0;
+        obesityScore = 0;
         if (fatigue) {
             obesityScore++;
         }
@@ -184,7 +261,7 @@ public class Main {
         }
     }
     public static void cancerTest() {
-        int cancerScore = 0;
+        cancerScore = 0;
         if (fatigue) {
             cancerScore++;
         }
@@ -221,5 +298,13 @@ public class Main {
     public static void notFound() {
         System.out.println("Oops! We can't find out what's wrong!");
         System.out.println("We advise that you seek a medical professional advice as soon as possible.");
+    }
+
+    public static void question() {
+        Scanner scanAnswer = new Scanner(System.in);
+        answer = scanAnswer.nextLine();
+        if (answer.equals("yes") || answer.equals("Yes") || answer.equals("y")) {
+            answer = "1";
+        }
     }
 }
