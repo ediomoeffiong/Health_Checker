@@ -171,7 +171,7 @@ public class Main {
         if (drowsiness) {
             malariaScore++;
         }
-        if (malariaScore >= 5) {
+        if (malariaScore >= 1) {
             System.out.println("..checking for malaria");
             System.out.println("Please answer the following questions to confirm: \n\n");
             malariaConfirm();
@@ -245,7 +245,7 @@ public class Main {
             }
         }
 
-        if (malariaScore > 6) {
+        if (malariaScore > 3) {
             message("Malaria");
         } else {
             message2("Malaria");
@@ -272,7 +272,7 @@ public class Main {
         if (difficultyExercising) {
             obesityScore++;
         }
-        if (obesityScore > 3) {
+        if (obesityScore >= 1) {
             System.out.println("...checking for obesity");
             System.out.println("Please answer the following questions to confirm: \n\n");
             obesityConfirm();
@@ -330,7 +330,7 @@ public class Main {
             }
         }
 
-        if (obesityScore > 4) {
+        if (obesityScore > 3) {
             message("Obesity");
         } else {
             message2("Obesity");
@@ -365,7 +365,7 @@ public class Main {
         if (weightLoss) {
             cancerScore++;
         }
-        if (cancerScore > 5) {
+        if (cancerScore > 2) {
             System.out.println("...checking for cancer.");
             System.out.println("Please answer the following questions to confirm: \n\n");
             cancerConfirm();
@@ -446,7 +446,7 @@ public class Main {
             }
         }
 
-        if (cancerScore >= 7) {
+        if (cancerScore > 4) {
             message("Cancer");
         } else {
             message2("Cancer");
@@ -467,14 +467,14 @@ public class Main {
     }
 
     public static void message(String message) {
-        System.out.println("\n\nOops! " + userName + " you are having " + message);
+        System.out.println("\n\nOops! " + userName + " these are the symptoms of " + message);
         System.out.println("\nI understand this must be concerning news. \n" + message + " can be serious, but it's also treatable");
         System.out.println("We recommend you seek immediate medical attention.");
         System.out.println("A doctor can confirm the diagnosis and prescribe the right medication.\n\n");
     }
 
     public static void message2(String message) {
-        System.out.println("\n\nCongrats! " + userName + " you are not having " + message);
+        System.out.println("\n\nCongrats! " + userName + " you are not having symptoms of " + message);
 
     }
 }
