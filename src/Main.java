@@ -172,7 +172,7 @@ public class Main {
             malariaScore++;
         }
         if (malariaScore >= 5) {
-            System.out.println("You may be having malaria.");
+            System.out.println("..checking for malaria");
             System.out.println("Please answer the following questions to confirm: \n\n");
             malariaConfirm();
             isFound = true;
@@ -247,6 +247,8 @@ public class Main {
 
         if (malariaScore > 6) {
             message("Malaria");
+        } else {
+            message2("Malaria");
         }
     }
 
@@ -271,7 +273,7 @@ public class Main {
             obesityScore++;
         }
         if (obesityScore > 3) {
-            System.out.println("You may be having obesity.");
+            System.out.println("...checking for obesity");
             System.out.println("Please answer the following questions to confirm: \n\n");
             obesityConfirm();
             isFound = true;
@@ -330,6 +332,8 @@ public class Main {
 
         if (obesityScore > 4) {
             message("Obesity");
+        } else {
+            message2("Obesity");
         }
     }
     public static void cancerTest() {
@@ -362,7 +366,7 @@ public class Main {
             cancerScore++;
         }
         if (cancerScore > 5) {
-            System.out.println("You may be having cancer.");
+            System.out.println("...checking for cancer.");
             System.out.println("Please answer the following questions to confirm: \n\n");
             cancerConfirm();
             isFound = true;
@@ -444,6 +448,8 @@ public class Main {
 
         if (cancerScore >= 7) {
             message("Cancer");
+        } else {
+            message2("Cancer");
         }
     }
 
@@ -464,6 +470,11 @@ public class Main {
         System.out.println("\n\nOops! " + userName + " you are having " + message);
         System.out.println("\nI understand this must be concerning news. \n" + message + " can be serious, but it's also treatable");
         System.out.println("We recommend you seek immediate medical attention.");
-        System.out.println("A doctor can confirm the diagnosis and prescribe the right medication.");
+        System.out.println("A doctor can confirm the diagnosis and prescribe the right medication.\n\n");
+    }
+
+    public static void message2(String message) {
+        System.out.println("\n\nCongrats! " + userName + " you are not having " + message);
+
     }
 }
