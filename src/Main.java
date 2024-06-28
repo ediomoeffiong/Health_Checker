@@ -4,7 +4,7 @@ public class Main {
     public static boolean isFemale, isMale;
     public static boolean cough, vomiting, fatigue, headache, fever, chill, discomfort, nausea, pain, drowsiness;
     public static boolean dehydration, catarrh, jointPain, highBP, skinChanges, difficultySwallowing, bloating;
-    public static boolean lostAppetite, bleeding, sweating, weightLoss;
+    public static boolean lostAppetite, bleeding, sweating, weightLoss, snoring, depression, difficultyExercising;
     public static String userName, answer;
     public static int malariaScore, pregScore, cancerScore, obesityScore;
     public static void main(String[] args) {
@@ -108,6 +108,15 @@ public class Main {
             if (symptoms.equals("weight loss") || symptoms.equals("loss in weight")) {
                 weightLoss = true;
             }
+            if (symptoms.equals("snoring")) {
+                snoring = true;
+            }
+            if (symptoms.equals("depression")) {
+                depression = true;
+            }
+            if (symptoms.equals("difficulty exercising") || symptoms.equals("exercising difficulty")) {
+                difficultyExercising = true;
+            }
         }
 
         //Calling all methods
@@ -163,7 +172,7 @@ public class Main {
             malariaScore++;
         }
         if (malariaScore >= 5) {
-            System.out.println("You are may be having malaria.");
+            System.out.println("You may be having malaria.");
             System.out.println("Please answer the following questions to confirm: \n\n");
             malariaConfirm();
             isFound = true;
@@ -237,10 +246,7 @@ public class Main {
         }
 
         if (malariaScore > 6) {
-            System.out.println("\n\nOops! " + userName + " you are having malaria.");
-            System.out.println("I understand this must be concerning news.\nMalaria can be serious, but it's also treatable");
-            System.out.println("We recommend you seek immediate medical attention.");
-            System.out.println("A doctor can confirm the diagnosis and prescribe the right medication.");
+            message("Malaria");
         }
     }
 
@@ -255,9 +261,75 @@ public class Main {
         if (highBP) {
             obesityScore++;
         }
-        if (obesityScore == 3) {
-            System.out.println("You have obesity.");
+        if (snoring) {
+            obesityScore++;
+        }
+        if (depression) {
+            obesityScore++;
+        }
+        if (difficultyExercising) {
+            obesityScore++;
+        }
+        if (obesityScore > 3) {
+            System.out.println("You may be having obesity.");
+            System.out.println("Please answer the following questions to confirm: \n\n");
+            obesityConfirm();
             isFound = true;
+        }
+    }
+
+    public static void obesityConfirm () {
+        if (!fatigue) {
+            System.out.print("Are you having fatigue (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                fatigue = true;
+                obesityScore++;
+            }
+        }
+        if (!jointPain) {
+            System.out.print("Are you having joint pain (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                jointPain = true;
+                obesityScore++;
+            }
+        }
+        if (!highBP) {
+            System.out.print("Are you having high blood pressure (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                highBP = true;
+                obesityScore++;
+            }
+        }
+        if (!snoring) {
+            System.out.print("Do you snore (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                snoring = true;
+                obesityScore++;
+            }
+        }
+        if (!depression) {
+            System.out.print("Do you feel depressed (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                depression = true;
+                obesityScore++;
+            }
+        }
+        if (!difficultyExercising) {
+            System.out.print("Do you have difficulty when exercising (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                difficultyExercising = true;
+                obesityScore++;
+            }
+        }
+
+        if (obesityScore > 4) {
+            message("Obesity");
         }
     }
     public static void cancerTest() {
@@ -289,9 +361,89 @@ public class Main {
         if (weightLoss) {
             cancerScore++;
         }
-        if (cancerScore >= 7) {
-            System.out.println("You have cancer!");
+        if (cancerScore > 5) {
+            System.out.println("You may be having cancer.");
+            System.out.println("Please answer the following questions to confirm: \n\n");
+            cancerConfirm();
             isFound = true;
+        }
+    }
+    public static void cancerConfirm () {
+        if (!fatigue) {
+            System.out.print("Are you having fatigue (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                fatigue = true;
+                cancerScore++;
+            }
+        }
+        if (!fever) {
+            System.out.print("Are you having fever (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                fever = true;
+                cancerScore++;
+            }
+        }
+        if (!pain) {
+            System.out.print("Are you feeling pain (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                pain = true;
+                cancerScore++;
+            }
+        }
+        if (!difficultySwallowing) {
+            System.out.print("Do you have difficulty when swallowing (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                difficultySwallowing = true;
+                cancerScore++;
+            }
+        }
+        if (!jointPain) {
+            System.out.print("Do you have pain in your joints (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                jointPain = true;
+                cancerScore++;
+            }
+        }
+        if (!bloating) {
+            System.out.print("Do you experience bloating (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                bloating = true;
+                cancerScore++;
+            }
+        }
+        if (!cough) {
+            System.out.print("Do you experience cough at regular intervals (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                cough = true;
+                cancerScore++;
+            }
+        }
+        if (!sweating) {
+            System.out.print("Do you sweat profusely (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                sweating = true;
+                cancerScore++;
+            }
+        }
+        if (!weightLoss) {
+            System.out.print("Are you experiencing weight loss (Yes/No): ");
+            question();
+            if (answer.equals("1")) {
+                weightLoss = true;
+                cancerScore++;
+            }
+        }
+
+        if (cancerScore >= 7) {
+            message("Cancer");
         }
     }
 
@@ -306,5 +458,12 @@ public class Main {
         if (answer.equals("yes") || answer.equals("Yes") || answer.equals("y")) {
             answer = "1";
         }
+    }
+
+    public static void message(String message) {
+        System.out.println("\n\nOops! " + userName + " you are having " + message);
+        System.out.println("\nI understand this must be concerning news. \n" + message + " can be serious, but it's also treatable");
+        System.out.println("We recommend you seek immediate medical attention.");
+        System.out.println("A doctor can confirm the diagnosis and prescribe the right medication.");
     }
 }
